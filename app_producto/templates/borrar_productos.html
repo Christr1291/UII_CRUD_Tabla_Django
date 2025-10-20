@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Borrado de Producto</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .btn { padding: 10px 15px; text-decoration: none; color: white; margin: 5px; }
+        .confirmar { background-color: #DC3545; }
+        .cancelar { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+    <h1>¿Estás seguro de borrar el producto: {{ producto.nombre }}?</h1>
+    <p>Descripción: {{ producto.descripcion }}</p>
+    <p>Precio: ${{ producto.precio }}</p>
+    <p>Stock: {{ producto.stock }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn confirmar">Sí, Borrar Producto</button>
+    </form>
+    <a href="/" class="btn cancelar">Cancelar</a>
+</body>
+</html>

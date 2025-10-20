@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Productos</h1>
+    <a href="/agregar/" class="btn agregar">Agregar Producto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th> {# Añadimos Acciones de nuevo para editar y borrar #}
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>${{ producto.precio }}</td>
+                <td>{{ producto.stock }}</td>
+                <td>
+                    <a href="/editar/{{ producto.id }}/" class="btn editar">Editar</a>
+                    <a href="/borrar/{{ producto.id }}/" class="btn borrar">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay productos registrados.</td> {# Colspan actualizado a 5 #}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
